@@ -17,7 +17,7 @@ public class MessageGenerator {
 //    @Scheduled(cron = "*/5 * * * * *")
     public void generateAndSendMessages() {
         IntStream.rangeClosed(1, 5).forEach(i -> {
-            this.streamBridge.send(PRODUCER_BINDING_NAME,"Test Message #" + i);
+            this.streamBridge.send(PRODUCER_BINDING_NAME,"StreamBridge - Test Message #" + i);
         });
     }
 }

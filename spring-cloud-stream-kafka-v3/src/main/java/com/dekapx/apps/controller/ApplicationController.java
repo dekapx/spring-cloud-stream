@@ -30,7 +30,7 @@ public class ApplicationController {
         log.info("generating messages...");
 
         IntStream.rangeClosed(1, count).forEach(i -> {
-            this.streamBridge.send(PRODUCER_BINDING_NAME,"Test Message #" + i);
+            this.streamBridge.send(PRODUCER_BINDING_NAME,"StreamBridge - Test Message #" + i);
         });
 
         return "Sending message to Kafka...";

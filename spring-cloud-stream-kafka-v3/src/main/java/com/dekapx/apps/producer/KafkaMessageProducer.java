@@ -11,6 +11,6 @@ import java.util.function.Supplier;
 public class KafkaMessageProducer {
     @Bean
     public Supplier<String> producer() {
-        return () -> " Test message from Message Producer";
+        return () -> "Message Producer - Test message";
     }
 }

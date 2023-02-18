@@ -43,6 +43,7 @@ spring:
           producer:
             useNativeEncoding: true
         consumer-in-0:
+          error-handler-definition: consumerErrorHandler
           destination: test-topic-inbound
           consumer.concurrency: 3
           consumer:
