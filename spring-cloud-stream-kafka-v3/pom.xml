@@ -12,7 +12,7 @@
 	<artifactId>spring-cloud-stream-kafka-v3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-cloud-stream-kafka-v1</name>
-	<description>Spring Cloud Stream Kafka</description>
+	<description>Spring Cloud Stream Kafka - Batch Retry</description>
 
 	<properties>
 		<java.version>19</java.version>
