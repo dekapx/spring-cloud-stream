@@ -1,6 +1,5 @@
 package com.dekapx.apps.consumer;
 
-import com.dekapx.apps.common.EnrichmentException;
 import com.dekapx.apps.service.KafkaMessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,9 @@ import java.util.function.Consumer;
 @Slf4j
 @Component
 public class KafkaMessageConsumer {
-    private RetryTemplate retryTemplate = RetryTemplate.builder()
-            .maxAttempts(3)
-            .fixedBackoff(1000)
-            .retryOn(RuntimeException.class)
-            .build();
+    @Autowired
+    private RetryTemplate retryTemplate;
+
     @Autowired
     private KafkaMessageService kafkaMessageService;
 
@@ -35,7 +32,7 @@ public class KafkaMessageConsumer {
         retryTemplate.execute(retryContext ->
                 this.kafkaMessageService.enrichMessage(msg));
         if (msg.contains("3")) {
-            throw new EnrichmentException("Faulty Message...");
+            throw new RuntimeException("Faulty Message...");
         }
         log.info("Message received: {}", msg);
     };

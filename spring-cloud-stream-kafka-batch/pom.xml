@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dekapx.apps</groupId>
-	<artifactId>spring-cloud-stream-kafka-v2</artifactId>
+	<artifactId>spring-cloud-stream-kafka-batch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-cloud-stream-kafka-v1</name>
-	<description>Spring Cloud Stream Kafka</description>
+	<name>spring-cloud-stream-kafka-batch</name>
+	<description>Spring Cloud Stream Kafka Batch</description>
 
 	<properties>
 		<java.version>19</java.version>
