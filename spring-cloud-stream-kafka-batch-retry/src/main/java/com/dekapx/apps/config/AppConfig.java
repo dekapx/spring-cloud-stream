@@ -9,11 +9,17 @@ import org.springframework.retry.support.RetryTemplate;
 
 @Configuration
 public class AppConfig {
+    @Value("${app.kafka.retry.maxAttempts}")
+    private Integer maxAttempts;
+
+    @Value("${app.kafka.retry.fixedBackoff}")
+    private Integer fixedBackoff;
+
     @Bean
     public RetryTemplate retryTemplate() {
         return RetryTemplate.builder()
-                .maxAttempts(3)
-                .fixedBackoff(100)
+                .maxAttempts(maxAttempts)
+                .fixedBackoff(fixedBackoff)
                 .retryOn(RuntimeException.class)
                 .build();
     }

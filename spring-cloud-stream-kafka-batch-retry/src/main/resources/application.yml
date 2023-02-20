@@ -55,3 +55,9 @@ spring:
             backOffMaxInterval: 900000
             backoffMultiplier: 1.0
             defaultRetryable: false
+app:
+  kafka:
+    enabled: true
+    retry:
+      maxAttempts: 3
+      fixedBackoff: 100
