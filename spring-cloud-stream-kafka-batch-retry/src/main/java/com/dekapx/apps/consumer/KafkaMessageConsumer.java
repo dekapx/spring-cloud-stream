@@ -31,9 +31,6 @@ public class KafkaMessageConsumer {
     private Consumer<String> processMessage = (msg) -> {
         retryTemplate.execute(retryContext ->
                 this.kafkaMessageService.enrichMessage(msg));
-        if (msg.contains("3")) {
-            throw new RuntimeException("Faulty Message...");
-        }
         log.info("Message received: {}", msg);
     };
 
