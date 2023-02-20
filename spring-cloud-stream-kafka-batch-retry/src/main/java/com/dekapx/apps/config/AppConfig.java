@@ -18,7 +18,6 @@ public class AppConfig {
                 .build();
     }
 
-
     @Bean
     public MeterRegistryCustomizer<MeterRegistry> meterRegistryCustomizer() {
         return registry -> registry.config().commonTags("application", "Spring Cloud Stream Kafka");
