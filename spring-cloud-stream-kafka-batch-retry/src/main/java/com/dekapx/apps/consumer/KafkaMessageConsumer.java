@@ -29,8 +29,10 @@ public class KafkaMessageConsumer {
     }
 
     private Consumer<String> processMessage = (msg) -> {
-        retryTemplate.execute(retryContext ->
-                this.kafkaMessageService.enrichMessage(msg));
+        this.retryTemplate.execute(retryContext -> {
+            this.kafkaMessageService.enrichMessage(msg);
+            return null;
+        });
         log.info("Message received: {}", msg);
     };
 
