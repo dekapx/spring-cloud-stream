@@ -50,11 +50,6 @@ spring:
             batch-mode: true
             max-attempts: 1
             use-native-decoding: true
-            maxAttempts: 3
-            backOffInitialInterval: 900000
-            backOffMaxInterval: 900000
-            backoffMultiplier: 1.0
-            defaultRetryable: false
 app:
   kafka:
     enabled: true

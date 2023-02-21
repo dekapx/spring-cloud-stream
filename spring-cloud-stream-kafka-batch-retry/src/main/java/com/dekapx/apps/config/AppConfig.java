@@ -1,5 +1,6 @@
 package com.dekapx.apps.config;
 
+import com.dekapx.apps.common.EnrichmentException;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
@@ -20,7 +21,7 @@ public class AppConfig {
         return RetryTemplate.builder()
                 .maxAttempts(maxAttempts)
                 .fixedBackoff(fixedBackoff)
-                .retryOn(RuntimeException.class)
+                .retryOn(EnrichmentException.class)
                 .build();
     }
 
