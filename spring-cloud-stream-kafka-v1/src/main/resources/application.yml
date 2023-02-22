@@ -13,11 +13,6 @@ spring:
             consumer:
               configuration:
                 value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
-                max.poll.records: 750
-                fetch.max.wait.ms: 500
-                fetch.min.bytes: 16384
-                fetch.max.bytes: 52428800
-                max.partition.fetch.bytes: 1048576
         binder:
           brokers: localhost:9092
       bindings:
@@ -27,8 +22,5 @@ spring:
             useNativeEncoding: true
         consumer-in-0:
           destination: test-topic-inbound
-          consumer.concurrency: 3
           consumer:
-            batch-mode: true
-            max-attempts: 1
             use-native-decoding: true
