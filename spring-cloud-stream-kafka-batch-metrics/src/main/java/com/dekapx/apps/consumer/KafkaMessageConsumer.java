@@ -13,6 +13,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static com.dekapx.apps.common.CommonConstants.FAILURE_MESSAGES_COUNTER_DESC;
+import static com.dekapx.apps.common.CommonConstants.FAILURE_MESSAGES_COUNTER_NAME;
+import static com.dekapx.apps.common.CommonConstants.SUCCESS_MESSAGES_COUNTER_DESC;
+import static com.dekapx.apps.common.CommonConstants.SUCCESS_MESSAGES_COUNTER_NAME;
+
 @Slf4j
 @Component
 public class KafkaMessageConsumer {
@@ -24,20 +29,24 @@ public class KafkaMessageConsumer {
     private KafkaMessageService kafkaMessageService;
 
     @Autowired
-    public KafkaMessageConsumer(MeterRegistry meterRegistry,
-                                RetryTemplate retryTemplate,
-                                KafkaMessageService kafkaMessageService) {
+    public KafkaMessageConsumer(final MeterRegistry meterRegistry,
+                                final RetryTemplate retryTemplate,
+                                final KafkaMessageService kafkaMessageService) {
         this.meterRegistry = meterRegistry;
         this.retryTemplate = retryTemplate;
         this.kafkaMessageService = kafkaMessageService;
 
-        successCounter = Counter.builder("CONSUMER_SUCCESS_MESSAGE_COUNT")
-                .description("Number of message processed by Consumer...")
-                .register(meterRegistry);
+        this.successCounter = buildCounter(SUCCESS_MESSAGES_COUNTER_NAME,
+                SUCCESS_MESSAGES_COUNTER_DESC);
 
-        failureCounter = Counter.builder("CONSUMER_FAILURE_MESSAGE_COUNT")
-                .description("Number of message failed by Consumer...")
-                .register(meterRegistry);
+        this.failureCounter = buildCounter(FAILURE_MESSAGES_COUNTER_NAME,
+                FAILURE_MESSAGES_COUNTER_DESC);
+    }
+
+    private Counter buildCounter(final String name, final String description) {
+        return Counter.builder(name)
+                .description(description)
+                .register(this.meterRegistry);
     }
 
     @Bean

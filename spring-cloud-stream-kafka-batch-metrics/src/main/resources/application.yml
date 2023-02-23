@@ -20,7 +20,7 @@ management:
 
 spring:
   application:
-    name: 'Spring Cloud Stream Kafka Batch Metrics'
+    name: 'Spring Cloud Stream Kafka'
   cloud:
     function:
       definition: consumer;producer
