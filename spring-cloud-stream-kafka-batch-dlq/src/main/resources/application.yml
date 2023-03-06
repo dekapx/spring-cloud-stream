@@ -52,8 +52,15 @@ spring:
           consumer.concurrency: 3
           consumer:
             batch-mode: true
-            max-attempts: 1
             use-native-decoding: true
+            max-attempts: 1
+#            to be verified for DLQ...
+            enableDlq: true
+            dlqName: test-topic-dlq
+            dlqPartitions: 1
+            autoCommitOnError: true
+            autoCommitOffset: true
+
 app:
   kafka:
     enabled: true
