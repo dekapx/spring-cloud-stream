@@ -44,12 +44,12 @@ spring:
           brokers: localhost:9092
       bindings:
         producer-out-0:
-          destination: test-topic
+          destination: test-topic-in
           producer:
             useNativeEncoding: true
         consumer-in-0:
           error-handler-definition: consumerErrorHandler
-          destination: test-topic
+          destination: test-topic-in
           consumer.concurrency: 3
           consumer:
             batch-mode: true
