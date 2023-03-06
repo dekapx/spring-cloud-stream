@@ -1,4 +1,4 @@
-package com.dekapx.apps.consumer;
+package com.dekapx.apps.broker;
 
 import com.dekapx.apps.service.KafkaMessageService;
 import io.micrometer.core.instrument.Counter;

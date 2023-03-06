@@ -1,4 +1,4 @@
-package com.dekapx.apps.producer;
+package com.dekapx.apps.broker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +11,6 @@ import java.util.function.Supplier;
 public class KafkaMessageProducer {
     @Bean
     public Supplier<String> producer() {
-        return () -> "Message Producer - Test message";
+        return () -> "{\"name\":\"Dummy User\",\"email\":\"dummy.user@google.com\",\"phone\":\"+1 123 456 7890\"}";
     }
 }
