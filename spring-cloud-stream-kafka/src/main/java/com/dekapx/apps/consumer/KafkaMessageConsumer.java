@@ -12,7 +12,7 @@ public class KafkaMessageConsumer {
     @Bean
     public Consumer<String> consumer() {
         return message -> {
-            log.info("Message received {}", message);
+            log.info("Message received -> {}", message);
         };
     }
 }

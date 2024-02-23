@@ -1,7 +1,9 @@
-version: '2'
+# docker-compose.yml
+version: '3.8'
+
 services:
 
-#Zookeeper Service.
+  #Zookeeper Service.
   zookeeper:
     image: 'bitnami/zookeeper:3.9.1'
     restart: "no"
@@ -11,7 +13,7 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
     container_name: zookeeper
 
-#Kafka Service
+  #Kafka Service
   kafka1:
     image: 'bitnami/kafka:3.6.1'
     restart: "no"
@@ -29,17 +31,3 @@ services:
     depends_on:
       - "zookeeper"
 
-#KafDrop UI for management
-#  kafdrop:
-#    image: 'obsidiandynamics/kafdrop:3.30.0'
-#    restart: "no"
-#    ports:
-#      - 9000:9000
-#
-#    environment:
-#      - KAFKA_BROKERCONNECT=kafka1:29092
-#      - JVM_OPTS=-Xms32M -Xmx64M
-#      - SERVER_SERVLET_CONTEXTPATH=/
-#    container_name: kafdrop
-#    depends_on:
-#      - "kafka1"
