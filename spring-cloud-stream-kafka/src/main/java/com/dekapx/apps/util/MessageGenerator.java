@@ -16,10 +16,10 @@ public class MessageGenerator {
     @Autowired
     private StreamBridge streamBridge;
 
-    @Scheduled(cron = "*/1 * * * * *")
+    @Scheduled(cron = "*/5 * * * * *")
     public void generateAndSendMessages() {
         IntStream.rangeClosed(1, 5).forEach(i -> {
-            this.streamBridge.send(PRODUCER_BINDING_NAME,"StreamBridge - Test Message #" + counter.incrementAndGet());
+            this.streamBridge.send(PRODUCER_BINDING_NAME,"MessageGenerator -> Test message#" + counter.incrementAndGet());
         });
     }
 }

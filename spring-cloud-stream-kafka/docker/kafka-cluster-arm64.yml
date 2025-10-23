@@ -1,33 +1,29 @@
-# docker-compose.yml
-version: '3.8'
+version: '2'
 
 services:
-
-  #Zookeeper Service.
   zookeeper:
-    image: 'bitnami/zookeeper:3.9.1'
-    restart: "no"
+    image: confluentinc/cp-zookeeper:6.2.0
+    hostname: zookeeper-learn
+    container_name: zookeeper-learn
     ports:
-      - '2181:2181'
+      - "2181:2181"
     environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-    container_name: zookeeper
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
 
-  #Kafka Service
-  kafka1:
-    image: 'bitnami/kafka:3.6.1'
-    restart: "no"
-    ports:
-      - '9092:9092'
-      - '29092:29092'
-    environment:
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=INTERNAL://:29092,EXTERNAL://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka1:29092,EXTERNAL://localhost:9092
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    container_name: kafka-broker1
+  kafka:
+    image: confluentinc/cp-kafka:6.2.0
+    hostname: kafka-learn
+    container_name: kafka-learn
     depends_on:
-      - "zookeeper"
-
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1

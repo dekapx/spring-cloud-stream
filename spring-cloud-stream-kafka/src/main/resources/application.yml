@@ -14,7 +14,7 @@ spring:
               configuration:
                 value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
         binder:
-          brokers: localhost:9092
+          brokers: localhost:29092
       bindings:
         producer-out-0:
           destination: test-topic-inbound
