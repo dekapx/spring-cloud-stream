@@ -8,6 +8,7 @@
         <version>3.5.6</version>
         <relativePath/>
     </parent>
+
     <groupId>com.dekapx.apps</groupId>
     <artifactId>spring-cloud-stream-kafka</artifactId>
     <version>0.0.1-SNAPSHOT</version>

@@ -41,7 +41,7 @@ spring:
                 fetch.max.bytes: 52428800
                 max.partition.fetch.bytes: 1048576
         binder:
-          brokers: localhost:9092
+          brokers: localhost:29092
       bindings:
         producer-out-0:
           destination: test-topic-in
